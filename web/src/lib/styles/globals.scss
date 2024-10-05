@@ -1,0 +1,97 @@
+:root {
+	--titlebar-height: 3.2rem;
+	--sidebar-size: 8rem;
+	--items-panel-size: 30rem;
+
+	/* Font */
+	--font-sans: 'Inter', sans-serif;
+	--font-mono: 'JetBrains Mono', monospace;
+
+	--font-10: 1rem;
+	--font-12: 1.2rem;
+	--font-14: 1.4rem;
+	--font-16: 1.6rem;
+	--font-18: 1.8rem;
+	--font-24: 2.4rem;
+
+	/* Spacing */
+	--spacing-4: 0.4rem;
+	--spacing-8: 0.8rem;
+	--spacing-16: 1.6rem;
+	--spacing-24: 2.4rem;
+	--spacing-32: 3.2rem;
+	--spacing-64: 6.4rem;
+
+	/* Shadows */
+	--shadow-sm: 0px 0px 4px 4px hsl(0 0% 0% / 4%);
+	--shadow-md: 0px 0px 10px 4px hsl(0 0% 0% / 10%);
+	--shadow-lg: 0px 0px 20px 8px hsl(0 0% 0% / 20%);
+
+	/* Border radius */
+	--rounded-4: 4px;
+	--rounded-8: 8px;
+	--rounded-full: 999px;
+}
+
+* {
+	font-family: var(--font-sans);
+}
+
+html {
+	font-size: 62.5%;
+	scroll-padding-top: var(--spacing-64);
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-color: var(--clr-scrollbar-thumb) transparent;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background-color: var(--bg);
+	overflow: hidden;
+	font-size: var(--font-16);
+	color: white;
+}
+
+@keyframes bounceOnClick {
+	0% {
+		transform: scale(1);
+	}
+
+	25% {
+		transform: scale(0.75);
+	}
+
+	50% {
+		transform: scale(1.25);
+	}
+
+	75% {
+		transform: scale(0.95);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+.bounce-effect:active {
+	animation: bounceOnClick 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	transform-origin: center;
+}
+
+.divider {
+	height: 1px;
+	background-color: rgba(255, 255, 255, 0.05);
+	flex-shrink: 0;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}

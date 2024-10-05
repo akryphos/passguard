@@ -1,0 +1,25 @@
+{
+  "name": "elysia",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts"
+  },
+  "prisma": {
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@elysiajs/swagger": "^1.1.3",
+    "@lucia-auth/adapter-prisma": "^4.0.1",
+    "@prisma/client": "^5.20.0",
+    "bcryptjs": "^2.4.3",
+    "elysia": "latest",
+    "lucia": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "bun-types": "latest",
+    "prisma": "^5.20.0"
+  },
+  "module": "src/index.js"
+}

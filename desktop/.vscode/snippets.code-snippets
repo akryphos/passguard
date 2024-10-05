@@ -1,8 +1,0 @@
-{
-	"Script tag with lang attribute set to typescript": {
-		"scope": "html,svelte",
-		"prefix": "scts",
-		"body": ["<script lang=\"ts\" >", "    ${0}", "</script>"],
-		"description": "Adds an script tag with lang attribute set to typescript"
-	}
-}

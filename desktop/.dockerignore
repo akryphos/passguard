@@ -1,7 +1,0 @@
-src-tauri/target
-src-tauri/gen/schemas
-node_modules
-.svelte-kit
-build
-dist
-.xwin-cache
