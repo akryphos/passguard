@@ -9,12 +9,8 @@ const validate_session = createBaseElysia().post(
     const authSession = headers.authorization?.split("Bearer ")[1];
 
     if (!authSession) throw new BadRequestException("Session not found");
-    console.log(authSession);
 
     let { user } = await auth.validateSession(authSession);
-
-    console.log(user);
-    
 
     if (!user) throw new BadRequestException("Session Expired");
 
