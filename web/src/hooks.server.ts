@@ -1,24 +1,19 @@
-import { CONST } from '$lib/constants';
+import { Routes } from '$lib/constants';
+import { auth_hook } from '$lib/server/auth_hook';
+import { authServices } from '$lib/server/services/auth';
+import { redirect, type Handle } from '@sveltejs/kit';
+import { sequence } from '@sveltejs/kit/hooks';
 
-export async function handle({ event, resolve }) {
-	const session = event.cookies.get('auth_session');
+const protected_routes_hook: Handle = async ({ event, resolve }) => {
+	const { url, locals } = event;
 
-	if (session) {
-		const res = await fetch(`${CONST.BASE_API_URL}/auth/validate_session`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${session}`
-			}
-		});
+	const isProtectedRoute = await authServices.isProtectedRoute(url.pathname);
 
-		if (res.ok) {
-			const user = await res.json();
-			event.locals.user = user;
-		} else {
-			event.cookies.delete('auth_session', { path: '/' });
-		}
+	if (isProtectedRoute && !locals.user) {
+		throw redirect(302, Routes.LOGIN);
 	}
 
 	return resolve(event);
-}
+};
+
+export const handle = sequence(auth_hook, protected_routes_hook);
