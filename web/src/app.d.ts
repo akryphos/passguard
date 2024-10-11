@@ -3,7 +3,7 @@ import type { Vault } from 'phosphor-svelte';
 declare global {
 	namespace App {
 		interface Locals {
-			user: User;
+			user: User | null;
 		}
 	}
 }

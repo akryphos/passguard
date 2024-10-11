@@ -5,7 +5,7 @@ export function setCookieFromAPI(response: Response, cookies: Cookies) {
 	const cookieHeader = response.headers.get('set-cookie');
 
 	if (!cookieHeader) {
-		return console.error('No set-cookie header found in API response');
+		return false;
 	}
 
 	try {
@@ -14,15 +14,18 @@ export function setCookieFromAPI(response: Response, cookies: Cookies) {
 		if (cookieValues.auth_session) {
 			// Parse and store the cookie in the SvelteKit cookie storage
 			cookies.set('auth_session', cookieValues.auth_session, {
-				httpOnly: true, // Secure it on the server
 				path: '/', // Set cookie for the entire site
-				sameSite: 'strict', // Prevent CSRF
-				secure: process.env.NODE_ENV === 'production' // Only use HTTPS in production
+				sameSite: 'strict' // Prevent CSRF
 			});
+			return true;
 		} else {
-			console.error('auth_session cookie not found');
+			cookies.set('auth_session', '', {
+				path: '/', // Set cookie for the entire site
+				sameSite: 'strict' // Prevent CSRF
+			});
+			return false;
 		}
 	} catch (error) {
-		console.error('Filed to parse cookie: ', error);
+		return false;
 	}
 }

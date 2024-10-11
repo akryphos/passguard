@@ -7,6 +7,10 @@
 	const { children } = $props<{ children: Snippet }>();
 </script>
 
+<svelte:head>
+	<title>Passguard</title>
+</svelte:head>
+
 <IconContext values={{ weight: 'bold', size: '24', color: 'currentColor' }}>
 	{@render children()}
 </IconContext>

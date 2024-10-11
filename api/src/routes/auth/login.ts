@@ -15,15 +15,16 @@ const login = createBaseElysia().post(
     });
 
     if (!user || !user.hashedPassword) {
-      console.error("User not found.");
-      throw new BadRequestException("User not found.");
+      throw new BadRequestException("Wrong Email or Password!");
     }
 
-    const passwordValid = bunPassword.verify(password, user.hashedPassword);
+    const passwordValid = await bunPassword.verify(
+      password,
+      user.hashedPassword
+    );
 
     if (!passwordValid) {
-      console.error("Password is invalid.");
-      throw new BadRequestException("Password is invalid.");
+      throw new BadRequestException("Wrong Email or Password!");
     }
 
     const session = await auth.createSession(user.id, {});

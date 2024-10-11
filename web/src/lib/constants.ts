@@ -1,5 +1,23 @@
-import { BASE_API_URL } from '$env/static/private';
+export const Routes = {
+	// Auth Routes
+	LOGIN: '/login',
+	LOGOUT: '/logout',
+	REGISTER: '/register',
 
-export const CONST = {
-	BASE_API_URL: process.env.NODE_ENV === 'production' ? BASE_API_URL : 'http://localhost:3049/api'
+	// App Routes
+	ROOT: '/',
+	VAULT: '/vault',
+	NOTES: '/notes',
+	FAVORITES: '/favorites',
+	TRASH: '/trash',
+	PROFILE: '/profile',
+	SETTINGS: '/settings'
 };
+
+export const PROTECTED_ROUTES = [
+	Routes.ROOT,
+	Routes.VAULT,
+	Routes.NOTES,
+	Routes.FAVORITES,
+	Routes.TRASH
+];

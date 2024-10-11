@@ -11,7 +11,7 @@ import { generateId } from "lucia";
 
 const register = createBaseElysia().post(
   "/register",
-  async ({ body: { email, password, name }, cookie, set }) => {
+  async ({ body: { email, password, fullName }, cookie, set }) => {
     const existingUser = await db.user.findUnique({
       where: {
         email,
@@ -31,7 +31,7 @@ const register = createBaseElysia().post(
         data: {
           id: userId,
           email,
-          name,
+          fullName,
           hashedPassword: hashedPassword,
         },
       });
@@ -61,7 +61,7 @@ const register = createBaseElysia().post(
         minLength: 8,
         maxLength: 64,
       }),
-      name: t.String({
+      fullName: t.String({
         minLength: 3,
         maxLength: 32,
       }),

@@ -16,7 +16,7 @@ datasource db {
 model User {
   id             String @id @default(uuid()) // Use UUID for unique user IDs
   email          String @unique
-  name           String @default("")
+  fullName           String @default("")
   hashedPassword String
 
   Session Session[]
