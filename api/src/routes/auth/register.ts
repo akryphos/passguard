@@ -56,10 +56,12 @@ const register = createBaseElysia().post(
     body: t.Object({
       email: t.String({
         format: "email",
+        error: "Invalid email."
       }),
       password: t.String({
         minLength: 8,
         maxLength: 64,
+        error: "Password must have at-least 8 characters."
       }),
       fullName: t.String({
         minLength: 3,

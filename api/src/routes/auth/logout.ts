@@ -2,23 +2,15 @@ import { createBaseElysia } from "@/base";
 import auth from "@/lib/auth";
 import { BadRequestException } from "@plugins/exceptions";
 
-const logout = createBaseElysia().post("/logout", async ({ cookie }) => {
-  console.log("hit");
-  
-  const sessionCookie = cookie[auth.sessionCookieName];  
+const logout = createBaseElysia().post("/logout", async ({ headers }) => {
+  const authSession = headers.authorization?.split("Bearer ")[1];
+  if (!authSession) throw new BadRequestException("Session not found");
 
-  if (!sessionCookie?.value) {
-    const e =  new BadRequestException("Session not found");
-    throw e;
-    
-  }
-  await auth.invalidateSession(sessionCookie.value);
-  const blankSessionCookie = auth.createBlankSessionCookie();
+  await auth.invalidateSession(authSession);
 
-  sessionCookie.set({
-    value: blankSessionCookie.value,
-    ...blankSessionCookie.attributes,
-  });
+  return {
+    message: "Logged out",
+  };
 });
 
 export default logout;

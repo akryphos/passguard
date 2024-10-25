@@ -10,7 +10,7 @@ const auth = new Lucia(adapter, {
       secure: process.env.NODE_ENV === "production",
     },
   },
-  sessionExpiresIn: new TimeSpan(20, "s"),
+  sessionExpiresIn: new TimeSpan(1, "w"),
   getUserAttributes: (atr) => {
     return {
       name: atr.name,

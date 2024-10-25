@@ -24,7 +24,7 @@ const login = createBaseElysia().post(
     );
 
     if (!passwordValid) {
-      throw new BadRequestException("Wrong Email or Password!");
+      throw new BadRequestException("Invalid Credentials.");
     }
 
     const session = await auth.createSession(user.id, {});
