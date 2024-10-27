@@ -1,10 +1,10 @@
 import { Routes } from '$lib/constants';
-import { auth_hook } from '$lib/server/auth_hook';
+import authHook from '$lib/server/hooks/auth';
 import { authServices } from '$lib/server/services/auth';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
-const protected_routes_hook: Handle = async ({ event, resolve }) => {
+const protectedRoutesHook: Handle = async ({ event, resolve }) => {
 	const { url, locals } = event;
 
 	const isProtectedRoute = await authServices.isProtectedRoute(url.pathname);
@@ -16,4 +16,13 @@ const protected_routes_hook: Handle = async ({ event, resolve }) => {
 	return resolve(event);
 };
 
-export const handle = sequence(auth_hook, protected_routes_hook);
+const appHook: Handle = async ({ event, resolve }) => {
+	const { url } = event;
+
+	if (url.pathname === Routes.APP_ROOT) {
+		throw redirect(302, Routes.APP_VAULT);
+	}
+
+	return resolve(event);
+};
+export const handle = sequence(authHook, protectedRoutesHook, appHook);
