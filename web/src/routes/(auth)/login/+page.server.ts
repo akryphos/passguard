@@ -1,6 +1,7 @@
 import { BASE_API_URL } from '$env/static/private';
-import { setCookieFromAPI } from '$lib/utils/cookies.js';
-import { error, fail, redirect } from '@sveltejs/kit';
+import { Routes } from '$lib/constants.js';
+import { setCookieFromAPI } from '$lib/utils/cookies';
+import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
 	default: async ({ cookies, fetch, request }) => {
@@ -30,6 +31,6 @@ export const actions = {
 			return fail(500, { error: 'Something went wrong!' });
 		}
 
-		throw redirect(302, '/vault');
+		throw redirect(302, Routes.APP_ROOT);
 	}
 };

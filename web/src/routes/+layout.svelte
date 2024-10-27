@@ -2,10 +2,8 @@
 	import '$lib/styles/app.scss';
 	import { IconContext } from 'phosphor-svelte';
 	import type { Snippet } from 'svelte';
-
 	// Import Components
 	import ViewTransition from '$lib/components/Navigation.svelte';
-	import { Toaster } from 'svelte-french-toast';
 
 	const { children } = $props<{ children: Snippet }>();
 </script>
@@ -21,8 +19,6 @@
 	<div id="app">
 		{@render children()}
 	</div>
-
-	<Toaster />
 </IconContext>
 
 <style>
@@ -30,5 +26,6 @@
 		height: 100dvh;
 		width: 100dvw;
 		display: grid;
+		grid-template-columns: 80px 1fr;
 	}
 </style>

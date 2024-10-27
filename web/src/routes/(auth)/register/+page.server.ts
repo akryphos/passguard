@@ -1,4 +1,5 @@
 import { BASE_API_URL } from '$env/static/private';
+import { Routes } from '$lib/constants.js';
 import { setCookieFromAPI } from '$lib/utils/cookies';
 import { fail, redirect } from '@sveltejs/kit';
 
@@ -27,7 +28,7 @@ export const actions = {
 		});
 
 		if (!res.ok) {
-			return fail(400, { error: `Error: ${await res.text()}` });
+			return fail(400, { error: await res.text() });
 		}
 
 		const isCookieSet = setCookieFromAPI(res, cookies);
@@ -36,6 +37,6 @@ export const actions = {
 			return fail(500, { error: 'Something went wrong!' });
 		}
 
-		throw redirect(302, '/vault');
+		throw redirect(302, Routes.APP_ROOT);
 	}
 };

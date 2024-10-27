@@ -1,57 +1,76 @@
 form {
-    view-transition-name: auth-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--spacing-24);
-    width: 50%;
-    padding: var(--spacing-8);
+	view-transition-name: auth-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 50%;
+	padding: var(--spacing-8);
 
-    .greet-wrapper {
-        h3 {
-            text-transform: capitalize;
-            font-size: var(--font-24);
-        }
+	.greet-wrapper {
+		h3 {
+			text-transform: capitalize;
+			font-size: var(--font-24);
+		}
 
-        span {
-            margin-top: var(--spacing-4);
-            font-size: var(--font-14);
-            opacity: 0.75;
-        }
-    }
+		span {
+			margin-top: var(--spacing-4);
+			font-size: var(--font-14);
+			opacity: 0.75;
+		}
+	}
 
-    .field-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-16);
+	.field-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-16);
 
-        .full-name {
-            display: flex;
-            gap: var(--spacing-16);
-            width: 100%;
-        }
-    }
+		.full-name {
+			display: flex;
+			gap: var(--spacing-16);
+			width: 100%;
+		}
+	}
 
-    .forgot-password {
-        color: rgb(89, 216, 216);
-        font-size: var(--font-12);
-        text-align: right;
-        font-weight: bold;
-    }
+	.forgot-password {
+		color: rgb(89, 216, 216);
+		font-size: var(--font-12);
+		text-align: right;
+		font-weight: bold;
+	}
 
-    p {
-        text-align: center;
-        font-size: var(--font-12);
+	.error {
+		background-color: rgba(255, 183, 77, 0.2);
+		border: 1px solid rgba(255, 183, 77, 0.35);
+		color: rgba(252, 184, 95, 0.75);
+		padding: var(--spacing-8);
+		border-radius: var(--rounded-4);
+		font-size: var(--font-14);
+		text-align: left;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
+	}
 
-        a {
-            color: rgb(89, 216, 216);
-            font-weight: bold;
-        }
-    }
+	/* Error Text */
+	.error p {
+		margin: 0;
+		padding: 0;
+	}
+
+	p {
+		text-align: center;
+		font-size: var(--font-12);
+
+		a {
+			color: rgb(89, 216, 216);
+			font-weight: bold;
+		}
+	}
 }
 
 @media screen and (max-width: 768px) {
-    form {
-        width: 100%;
-    }
+	form {
+		width: 100%;
+	}
 }

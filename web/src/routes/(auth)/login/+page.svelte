@@ -1,29 +1,17 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { useFocusFirstField } from '$lib/utils';
-	import toast from 'svelte-french-toast';
-
+	import { useFocusFirstEmptyField } from '$lib/utils';
 	// Import Components
 	import Input from '$lib/components/Input.svelte';
+	import { XCircle } from 'phosphor-svelte';
 
 	// Focus on the first input field
-	useFocusFirstField('field-wrapper');
+	useFocusFirstEmptyField('field-wrapper');
 
 	const { form } = $props();
 
 	$effect(() => {
-		if (form?.error) {
-			toast.error(form.error, {
-				position: 'bottom-center',
-				ariaProps: { role: 'status', 'aria-live': 'polite' },
-				duration: 2000,
-				style: 'background-color: var(--bg-surface-2); color: #eee;',
-				iconTheme: {
-					primary: '#FF3D3D',
-					secondary: ''
-				}
-			});
-		}
+		form?.error && useFocusFirstEmptyField('field-wrapper');
 	});
 </script>
 
@@ -43,6 +31,15 @@
 	</div>
 
 	<a class="forgot-password" href="/forget-password">Forgot Password?</a>
-	<button class="btn" type="submit">Submit</button>
+
+	<!-- Error Messages -->
+	{#if form?.error}
+		<div class="error">
+			<XCircle size="18" />
+			<p>{form.error}</p>
+		</div>
+	{/if}
+
+	<button class="btn" type="submit">Login</button>
 	<p>Don't have an account? <a href="/register">Register</a></p>
 </form>

@@ -6,18 +6,17 @@
 </script>
 
 <div class="auth-box">
-	<!-- Temporary -->
-	<img
-		src="https://plus.unsplash.com/premium_photo-1670155857330-0f4ecdc918ee?q=80&w=2030&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-		alt="LOL"
-	/>
+	<img src="/auth.png" alt="Auth Vector" />
 	{@render children()}
 </div>
 
 <style>
 	.auth-box {
 		background-color: var(--bg-surface-2);
-		place-self: center;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
 		border-radius: var(--rounded-8);
 		padding: var(--spacing-16);
 		width: 45dvw;
@@ -42,7 +41,7 @@
 			min-width: 300px;
 			height: fit-content;
 			min-height: 400px;
-			
+
 			img {
 				display: none;
 			}

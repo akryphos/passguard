@@ -23,21 +23,26 @@
 
 <style>
 	.input-wrapper {
-		background: #3b364c;
+		background: var(--bg-input, rgba(0, 0, 0, 0.3));
 		overflow: hidden;
 		gap: var(--spacing-12);
 		display: flex;
 		align-items: center;
 		border-radius: var(--rounded-4);
+		border: 1px solid var(--focus-color, var(--border));
 
 		&:focus-within {
-			border: 2px solid #746898;
+			border: 1px solid var(--focus-color, var(--primary));
 		}
 
 		input {
 			padding: var(--spacing-12);
 			min-width: 0;
 			width: 100%;
+
+			&::placeholder {
+				color: #989c9e;
+			}
 		}
 
 		&.pw {

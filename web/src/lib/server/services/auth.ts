@@ -8,5 +8,5 @@ async function isProtectedRoute(pathname: string, routes = PROTECTED_ROUTES) {
 }
 
 export const authServices = {
-    isProtectedRoute
-}
+	isProtectedRoute
+};

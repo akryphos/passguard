@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import { onNavigate } from '$app/navigation';
 
 	onNavigate((navigation) => {
@@ -7,7 +6,7 @@
 
 		return new Promise((resolve) => {
 			document.startViewTransition(async () => {
-                resolve();
+				resolve();
 				await navigation.complete;
 			});
 		});
